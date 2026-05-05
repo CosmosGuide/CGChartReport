@@ -130,8 +130,8 @@ input {
   <h3>Enter Your Birth Details</h3>
 
   <form>
-    <input type="text" placeholder="Full Name" required><br>
-    <input type="date" required><br>
+    <input id="name" type="text" placeholder="Full Name" required><br>
+    <input id="dob" type="date" required><br>
     <input type="time" required><br>
     <input type="text" placeholder="Place of Birth" required><br>
     <input type="tel" placeholder="WhatsApp Number" required><br>
@@ -166,7 +166,7 @@ Want deeper clarity? Get your full Life Pattern Report.
 
 </div>
 
-<script>
+<!--<script>
 document.querySelector("form").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -191,6 +191,38 @@ document.querySelector("form").addEventListener("submit", function(e) {
     "<strong>" + name + "</strong>, " + message;
 
   document.getElementById("result").style.display = "block";
+});
+</script>  -->
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const dob = document.getElementById("dob").value;
+
+  if (!dob) return;
+
+  const day = new Date(dob).getDate();
+
+  let message = "";
+
+  if (day <= 9) {
+    message = "You are a natural initiator. You like to start things but may struggle with consistency.";
+  } else if (day <= 18) {
+    message = "You are practical and hardworking. Your growth comes through discipline and patience.";
+  } else {
+    message = "You are intuitive and emotional. You tend to overthink decisions but have deep insight.";
+  }
+
+  document.getElementById("insightText").innerHTML =
+    "<strong>" + name + "</strong>, " + message;
+
+  const result = document.getElementById("result");
+  result.style.display = "block";
+
+  // scroll to result (IMPORTANT)
+  result.scrollIntoView({ behavior: "smooth" });
 });
 </script>  
 
